@@ -24,24 +24,24 @@
 
         /* カラー変数を定義 */
         :root {
-            --color-bg: #F8F6F2; /* 淡いベージュ */
-            --color-text: #333;
-            --color-primary: #BFA181; /* ゴールド系 */
-            --color-primary-darker: #a88d6e;
+            --color-bg: #283593; /* 濃紺 */
+            --color-text: #ffffff;
+            --color-primary: #D4AF37; /* ゴールド系 */
+            --color-primary-darker: #B8860B;
             --color-accent: #5D737E; /* ディープグリーン系 */
-            --color-surface: #FFFFFF;
-            --color-border: #e5e7eb;
+            --color-surface: #3949ab;
+            --color-border: #5c6bc0;
         }
 
         /* ダークモード用のカラー変数 */
         html.dark {
-            --color-bg: #1a1a1a;
+            --color-bg: #0d1421;
             --color-text: #e0e0e0;
-            --color-primary: #D4B692;
-            --color-primary-darker: #bfa181;
+            --color-primary: #FFD700;
+            --color-primary-darker: #D4AF37;
             --color-accent: #88A0AC;
-            --color-surface: #2c2c2c;
-            --color-border: #444;
+            --color-surface: #1a237e;
+            --color-border: #283593;
         }
         
         /* フォントの設定 */
@@ -66,7 +66,7 @@
         .form-input:focus, .form-select:focus, .form-textarea:focus {
             outline: none;
             border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px rgba(191, 161, 129, 0.2);
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
         }
         .form-input.is-invalid, .form-select.is-invalid, .form-textarea.is-invalid {
             border-color: #ef4444; /* red-500 */
@@ -101,7 +101,7 @@
             background-color: var(--color-surface);
         }
         .custom-checkbox input:checked + label, .custom-radio input:checked + label {
-            background-color: rgba(191, 161, 129, 0.1);
+            background-color: rgba(212, 175, 55, 0.1);
             border-color: var(--color-primary);
         }
         .custom-checkbox .icon, .custom-radio .icon {
