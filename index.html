@@ -22,26 +22,28 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        /* カラー変数を定義 */
+        /* =====================
+           基本カラー（濃紺 × ゴールド）
+        ===================== */
         :root {
-            --color-bg: #283593; /* 濃紺 */
-            --color-text: #ffffff;
-            --color-primary: #D4AF37; /* ゴールド系 */
-            --color-primary-darker: #B8860B;
+            --color-bg: #0c1a26;
+            --color-text: #f5f5f5;
+            --color-primary: #bfa181;
+            --color-primary-darker: #a88d6e;
             --color-accent: #5D737E; /* ディープグリーン系 */
-            --color-surface: #3949ab;
-            --color-border: #5c6bc0;
+            --color-surface: #11243d;
+            --color-border: #2b3e59;
         }
 
         /* ダークモード用のカラー変数 */
         html.dark {
-            --color-bg: #0d1421;
+            --color-bg: #050a0f;
             --color-text: #e0e0e0;
-            --color-primary: #FFD700;
-            --color-primary-darker: #D4AF37;
+            --color-primary: #d4b692;
+            --color-primary-darker: #bfa181;
             --color-accent: #88A0AC;
-            --color-surface: #1a237e;
-            --color-border: #283593;
+            --color-surface: #0f1b28;
+            --color-border: #1a2b3d;
         }
         
         /* フォントの設定 */
@@ -66,7 +68,7 @@
         .form-input:focus, .form-select:focus, .form-textarea:focus {
             outline: none;
             border-color: var(--color-primary);
-            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.2);
+            box-shadow: 0 0 0 3px rgba(191, 161, 129, 0.2);
         }
         .form-input.is-invalid, .form-select.is-invalid, .form-textarea.is-invalid {
             border-color: #ef4444; /* red-500 */
@@ -101,7 +103,7 @@
             background-color: var(--color-surface);
         }
         .custom-checkbox input:checked + label, .custom-radio input:checked + label {
-            background-color: rgba(212, 175, 55, 0.1);
+            background-color: rgba(191, 161, 129, 0.1);
             border-color: var(--color-primary);
         }
         .custom-checkbox .icon, .custom-radio .icon {
