@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ご予約・お問い合わせフォーム - Rita Sallie</title>
+    <title>ご予約・お問い合わせフォーム - Rita Sallier</title>
     
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -193,17 +193,17 @@
 
         <!-- ヘッダーとテーマ切り替え -->
         <header class="py-4 px-4 sm:px-8 flex justify-between items-center">
-            <h1 class="font-serif text-3xl font-bold" style="color: var(--color-primary);">Rita Sallie</h1>
+            <h1 class="font-serif text-3xl font-bold" style="color: var(--color-primary);">Rita Sallier</h1>
             <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                 <!-- アイコンはJSで設定 -->
             </button>
         </header>
 
         <main class="flex-grow flex items-center justify-center p-4">
-            <div class="w-full max-w-5xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">    
-
-                <!-- 右側：フォーム -->
-                <div class="w-full lg:w-1/2 mx-auto">
+            <div class="w-full max-w-2xl mx-auto">
+                
+                <!-- フォーム -->
+                <div class="w-full mx-auto">
                     <div id="booking-form-container" class="p-6 sm:p-10 rounded-xl shadow-xl" style="background-color: var(--color-surface); border: 1px solid var(--color-border);">
                         
                         <div id="form-content">
@@ -229,7 +229,7 @@
                                 
                                 <!-- 希望メニュー -->
                                 <div id="menu-selection-wrapper">
-                                    <label class="form-label">ご希望のメニュー (複数選択可)</label>
+                                    <label class="form-label">ご希望のメニュー</label>
                                     <div class="space-y-4">
                                         <div class="custom-checkbox">
                                             <input type="checkbox" id="menu1" name="希望メニュー" value="頭筋ほぐしで小顔革命！ドライヘッドケア/45分">
@@ -256,22 +256,26 @@
                                 
                                 <!-- 希望日時 -->
                                 <div id="datetime-selection-wrapper" class="space-y-6">
+                                    <!-- 送信用の隠しフィールド -->
+                                    <input type="hidden" id="datetime_1" name="第一希望日時">
+                                    <input type="hidden" id="datetime_2" name="第二希望日時">
+
                                     <div>
                                         <label class="form-label">第一希望日時 <span class="text-red-500 text-sm">*</span></label>
                                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                                            <div class="form-select-wrapper"><select name="第一希望_月" class="form-select date-month"></select></div>
-                                            <div class="form-select-wrapper"><select name="第一希望_日" class="form-select date-day"></select></div>
-                                            <div class="form-select-wrapper"><select name="第一希望_時" class="form-select time-hour"></select></div>
-                                            <div class="form-select-wrapper"><select name="第一希望_分" class="form-select time-minute"></select></div>
+                                            <div class="form-select-wrapper"><select data-choice="1" data-type="month" class="form-select date-month"></select></div>
+                                            <div class="form-select-wrapper"><select data-choice="1" data-type="day" class="form-select date-day"></select></div>
+                                            <div class="form-select-wrapper"><select data-choice="1" data-type="hour" class="form-select time-hour"></select></div>
+                                            <div class="form-select-wrapper"><select data-choice="1" data-type="minute" class="form-select time-minute"></select></div>
                                         </div>
                                     </div>
                                     <div>
                                         <label class="form-label">第二希望日時</label>
                                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                                            <div class="form-select-wrapper"><select name="第二希望_月" class="form-select date-month"></select></div>
-                                            <div class="form-select-wrapper"><select name="第二希望_日" class="form-select date-day"></select></div>
-                                            <div class="form-select-wrapper"><select name="第二希望_時" class="form-select time-hour"></select></div>
-                                            <div class="form-select-wrapper"><select name="第二希望_分" class="form-select time-minute"></select></div>
+                                            <div class="form-select-wrapper"><select data-choice="2" data-type="month" class="form-select date-month"></select></div>
+                                            <div class="form-select-wrapper"><select data-choice="2" data-type="day" class="form-select date-day"></select></div>
+                                            <div class="form-select-wrapper"><select data-choice="2" data-type="hour" class="form-select time-hour"></select></div>
+                                            <div class="form-select-wrapper"><select data-choice="2" data-type="minute" class="form-select time-minute"></select></div>
                                         </div>
                                     </div>
                                 </div>
@@ -321,7 +325,7 @@
         
         <footer class="text-center py-8 px-4 text-sm text-gray-500 dark:text-gray-400">
             <p><a href="#" class="hover:underline">プライバシーポリシー</a></p>
-            <p class="mt-2">&copy; 2025 Rita Sallie. All Rights Reserved.</p>
+            <p class="mt-2">&copy; 2025 Rita Sallier. All Rights Reserved.</p>
         </footer>
     </div>
 
@@ -374,6 +378,27 @@
         }
         populateDateTime();
 
+        function updateHiddenDateTime(choiceNumber) {
+            const selects = document.querySelectorAll(`select[data-choice="${choiceNumber}"]`);
+            const values = { month: '', day: '', hour: '', minute: '' };
+            selects.forEach(s => {
+                values[s.dataset.type] = s.value;
+            });
+            
+            const hiddenInput = document.getElementById(`datetime_${choiceNumber}`);
+            if (values.month && values.day && values.hour && values.minute) {
+                hiddenInput.value = `${values.month}月${values.day}日${values.hour}時${values.minute}分`;
+            } else {
+                hiddenInput.value = '';
+            }
+        }
+
+        document.querySelectorAll('#datetime-selection-wrapper select').forEach(select => {
+            select.addEventListener('change', (e) => {
+                updateHiddenDateTime(e.target.dataset.choice);
+            });
+        });
+
         function validateForm() {
             let isValid = true;
             form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
@@ -391,6 +416,23 @@
                     field.classList.add('is-invalid');
                 }
             });
+
+            const isBooking = document.querySelector('input[name="ご用件"]:checked').value === '予約';
+            if (isBooking) {
+                const firstChoiceSelects = document.querySelectorAll('select[data-choice="1"]');
+                let allSelected = true;
+                firstChoiceSelects.forEach(select => {
+                    if (!select.value) {
+                        allSelected = false;
+                    }
+                });
+                if (!allSelected) {
+                    isValid = false;
+                    firstChoiceSelects.forEach(select => {
+                         if (!select.value) select.classList.add('is-invalid');
+                    });
+                }
+            }
 
             return isValid;
         }
@@ -438,9 +480,10 @@
             menuSelectionWrapper.style.display = isBooking ? 'block' : 'none';
             datetimeSelectionWrapper.style.display = isBooking ? 'block' : 'none';
 
-            const dateFields = datetimeSelectionWrapper.querySelectorAll('select[name^="第一希望"]');
-            dateFields.forEach(field => {
-                field.required = isBooking;
+            const firstChoiceSelects = datetimeSelectionWrapper.querySelectorAll('select[data-choice="1"]');
+            firstChoiceSelects.forEach(field => {
+                // We validate via JS, so a simple required attribute is not needed.
+                // It can cause confusing browser popups.
             });
         }
         typeRadios.forEach(radio => {
