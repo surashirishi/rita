@@ -109,7 +109,6 @@
             cursor: pointer;
             transition: background-color 0.3s, border-color 0.3s;
             background-color: var(--color-surface);
-            font-size: 1.05rem; /* ラベルの文字も大きく */
         }
         .custom-checkbox input:checked + label, .custom-radio input:checked + label {
             background-color: rgba(191, 161, 129, 0.1);
@@ -218,11 +217,11 @@
                                     <div class="space-y-4">
                                         <div class="custom-radio">
                                             <input type="radio" id="type_booking" name="ご用件" value="予約" checked>
-                                            <label for="type_booking"><span class="icon"></span><span>ご予約</span></label>
+                                            <label for="type_booking"><span class="icon"></span><span class="text-base">ご予約</span></label>
                                         </div>
                                         <div class="custom-radio">
                                             <input type="radio" id="type_inquiry" name="ご用件" value="お問い合わせ">
-                                            <label for="type_inquiry"><span class="icon"></span><span>お問い合わせ</span></label>
+                                            <label for="type_inquiry"><span class="icon"></span><span class="text-base">お問い合わせ</span></label>
                                         </div>
                                     </div>
                                 </div>
@@ -236,8 +235,8 @@
                                             <label for="menu1">
                                                 <span class="icon"></span>
                                                 <div>
-                                                    <p class="font-medium">頭筋ほぐしで小顔革命！</p>
-                                                    <p class="text-sm text-gray-600 dark:text-gray-400">ドライヘッドケア/45分</p>
+                                                    <p class="font-medium text-lg">頭筋ほぐしで小顔革命！</p>
+                                                    <p class="text-base text-gray-600 dark:text-gray-400 mt-1">ドライヘッドケア/45分</p>
                                                 </div>
                                             </label>
                                         </div>
@@ -246,8 +245,8 @@
                                             <label for="menu2">
                                                 <span class="icon"></span>
                                                 <div>
-                                                    <p class="font-medium">「エレガンス小顔」フェイスライン整えエステ</p>
-                                                    <p class="text-sm text-gray-600 dark:text-gray-400">ドライヘッドケア45分 + フェイシャルエステ45分</p>
+                                                    <p class="font-medium text-lg">「エレガンス小顔」フェイスライン整えエステ</p>
+                                                    <p class="text-base text-gray-600 dark:text-gray-400 mt-1">ドライヘッドケア45分 + フェイシャルエステ45分</p>
                                                 </div>
                                             </label>
                                         </div>
@@ -300,6 +299,17 @@
                                     </div>
                                 </div>
                                 
+                                <!-- 注意書き -->
+                                <div class="pt-4">
+                                    <!-- カラーリングを修正して視認性を向上 -->
+                                    <p class="text-sm text-stone-700 dark:text-gray-300 bg-amber-50 dark:bg-gray-800 p-4 rounded-lg leading-relaxed">
+                                        お問い合わせ・ご予約、誠にありがとうございます。<br>
+                                        当サロンより折り返しご連絡いたしますので、今しばらくお待ちくださいませ。<br><br>
+                                        <strong class="font-medium">※ご予約の場合、現段階ではまだ確定ではございません。</strong><br>
+                                        当サロンからの連絡をもちまして、予約確定とさせていただきます。
+                                    </p>
+                                </div>
+                                
                                 <!-- 送信ボタン -->
                                 <div class="pt-6">
                                     <button type="submit" id="submit-btn" class="btn btn-primary">この内容で送信する</button>
@@ -314,7 +324,8 @@
                             <p class="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
                                 当サロンより折り返しご連絡いたしますので、<br>今しばらくお待ちくださいませ。
                             </p>
-                             <p class="text-base text-gray-500 dark:text-gray-400 mt-8 bg-gray-100 dark:bg-gray-700/50 p-4 rounded-lg inline-block leading-relaxed">
+                             <!-- カラーリングを修正して視認性を向上 -->
+                             <p class="text-base text-stone-700 dark:text-gray-300 mt-8 bg-amber-50 dark:bg-gray-800 p-4 rounded-lg inline-block leading-relaxed">
                                 ※ご予約の場合、現段階ではまだ確定ではございません。<br>当サロンからの連絡をもちまして、予約確定とさせていただきます。
                             </p>
                         </div>
@@ -479,12 +490,6 @@
             
             menuSelectionWrapper.style.display = isBooking ? 'block' : 'none';
             datetimeSelectionWrapper.style.display = isBooking ? 'block' : 'none';
-
-            const firstChoiceSelects = datetimeSelectionWrapper.querySelectorAll('select[data-choice="1"]');
-            firstChoiceSelects.forEach(field => {
-                // We validate via JS, so a simple required attribute is not needed.
-                // It can cause confusing browser popups.
-            });
         }
         typeRadios.forEach(radio => {
             radio.addEventListener('change', toggleFormSections);
