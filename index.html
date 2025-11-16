@@ -1,18 +1,21 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ご予約・お問い合わせフォーム - Rita Sallier</title>
-    
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
-    
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Noto+Sans+JP:wght@400;500&display=swap"
+        rel="stylesheet">
+
     <style>
         /* 基本スタイルの設定 */
         body {
@@ -20,16 +23,21 @@
             background-color: var(--color-bg);
             color: var(--color-text);
             transition: background-color 0.3s, color 0.3s;
-            font-size: 16px; /* ベースのフォントサイズを指定 */
+            font-size: 16px;
+            /* ベースのフォントサイズを指定 */
         }
 
         /* カラー変数を定義 */
         :root {
-            --color-bg: #F9F7F5; /* 少し温かみのあるベージュ */
-            --color-text: #383838; /* より濃いテキスト色 */
-            --color-primary: #BFA181; /* ゴールド系 */
+            --color-bg: #F9F7F5;
+            /* 少し温かみのあるベージュ */
+            --color-text: #383838;
+            /* より濃いテキスト色 */
+            --color-primary: #BFA181;
+            /* ゴールド系 */
             --color-primary-darker: #a88d6e;
-            --color-accent: #5D737E; /* ディープグリーン系 */
+            --color-accent: #5D737E;
+            /* ディープグリーン系 */
             --color-surface: #FFFFFF;
             --color-border: #e2e2e2;
         }
@@ -44,47 +52,62 @@
             --color-surface: #2d2d2d;
             --color-border: #4a4a4a;
         }
-        
+
         /* フォントの設定 */
         .font-serif {
             font-family: 'Playfair Display', serif;
         }
+
         .font-sans {
             font-family: 'Noto Sans JP', sans-serif;
         }
 
         /* フォームの項目ラベル */
         .form-label {
-            font-size: 1.05rem; /* 16.8px */
+            font-size: 1.05rem;
+            /* 16.8px */
             font-weight: 500;
-            margin-bottom: 0.75rem; /* 12px */
+            margin-bottom: 0.75rem;
+            /* 12px */
             display: block;
         }
 
         /* フォーム要素のスタイル */
-        .form-input, .form-select, .form-textarea {
+        .form-input,
+        .form-select,
+        .form-textarea {
             width: 100%;
             background-color: var(--color-surface);
             border: 1px solid var(--color-border);
             border-radius: 8px;
-            padding: 14px 18px; /* パディングを増やす */
-            font-size: 1.05rem; /* 入力文字も大きく */
+            padding: 14px 18px;
+            /* パディングを増やす */
+            font-size: 1.05rem;
+            /* 入力文字も大きく */
             color: var(--color-text);
             transition: border-color 0.3s, box-shadow 0.3s;
             appearance: none;
         }
-        .form-input:focus, .form-select:focus, .form-textarea:focus {
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
             outline: none;
             border-color: var(--color-primary);
             box-shadow: 0 0 0 3px rgba(191, 161, 129, 0.25);
         }
-        .form-input.is-invalid, .form-select.is-invalid, .form-textarea.is-invalid {
-            border-color: #d9534f; /* 少し落ち着いた赤 */
+
+        .form-input.is-invalid,
+        .form-select.is-invalid,
+        .form-textarea.is-invalid {
+            border-color: #d9534f;
+            /* 少し落ち着いた赤 */
         }
 
         .form-select-wrapper {
             position: relative;
         }
+
         .form-select-wrapper::after {
             content: '▼';
             font-size: 0.8rem;
@@ -97,25 +120,34 @@
         }
 
         /* カスタムチェックボックスとラジオボタン */
-        .custom-checkbox input, .custom-radio input {
+        .custom-checkbox input,
+        .custom-radio input {
             display: none;
         }
-        .custom-checkbox label, .custom-radio label {
+
+        .custom-checkbox label,
+        .custom-radio label {
             display: flex;
             align-items: center;
-            padding: 18px; /* パディングを増やす */
+            padding: 18px;
+            /* パディングを増やす */
             border: 1px solid var(--color-border);
             border-radius: 8px;
             cursor: pointer;
             transition: background-color 0.3s, border-color 0.3s;
             background-color: var(--color-surface);
         }
-        .custom-checkbox input:checked + label, .custom-radio input:checked + label {
+
+        .custom-checkbox input:checked+label,
+        .custom-radio input:checked+label {
             background-color: rgba(191, 161, 129, 0.1);
             border-color: var(--color-primary);
         }
-        .custom-checkbox .icon, .custom-radio .icon {
-            width: 22px; /* アイコンを大きく */
+
+        .custom-checkbox .icon,
+        .custom-radio .icon {
+            width: 22px;
+            /* アイコンを大きく */
             height: 22px;
             border: 2px solid var(--color-border);
             margin-right: 14px;
@@ -125,25 +157,32 @@
             align-items: center;
             justify-content: center;
         }
+
         .custom-checkbox .icon {
             border-radius: 5px;
         }
+
         .custom-radio .icon {
             border-radius: 50%;
         }
-        .custom-checkbox input:checked + label .icon, .custom-radio input:checked + label .icon {
+
+        .custom-checkbox input:checked+label .icon,
+        .custom-radio input:checked+label .icon {
             background-color: var(--color-primary);
             border-color: var(--color-primary);
         }
-        .custom-checkbox input:checked + label .icon::after {
-             content: '✓';
-             color: white;
-             font-size: 16px;
-             font-weight: bold;
+
+        .custom-checkbox input:checked+label .icon::after {
+            content: '✓';
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
         }
-        .custom-radio input:checked + label .icon::after {
+
+        .custom-radio input:checked+label .icon::after {
             content: '';
-            width: 12px; /* 内側の円も大きく */
+            width: 12px;
+            /* 内側の円も大きく */
             height: 12px;
             background-color: white;
             border-radius: 50%;
@@ -151,10 +190,12 @@
 
         /* ボタンのスタイル */
         .btn {
-            padding: 16px 28px; /* ボタンのパディングを増やす */
+            padding: 16px 28px;
+            /* ボタンのパディングを増やす */
             border-radius: 8px;
             font-weight: 500;
-            font-size: 1.1rem; /* ボタンの文字を大きく */
+            font-size: 1.1rem;
+            /* ボタンの文字を大きく */
             transition: all 0.3s;
             cursor: pointer;
             display: inline-flex;
@@ -162,15 +203,18 @@
             justify-content: center;
             width: 100%;
         }
+
         .btn-primary {
             background-color: var(--color-primary);
             color: white;
             border: 1px solid var(--color-primary);
         }
+
         .btn-primary:hover {
             background-color: var(--color-primary-darker);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
         }
+
         .btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
@@ -180,12 +224,21 @@
         .fade-in {
             animation: fadeIn 0.7s ease-in-out;
         }
+
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
     </style>
 </head>
+
 <body class="transition-colors duration-300">
 
     <div id="app" class="min-h-screen flex flex-col">
@@ -193,66 +246,129 @@
         <!-- ヘッダーとテーマ切り替え -->
         <header class="py-4 px-4 sm:px-8 flex justify-between items-center">
             <h1 class="font-serif text-3xl font-bold" style="color: var(--color-primary);">Rita Sallier</h1>
-            <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
+            <button id="theme-toggle"
+                class="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors">
                 <!-- アイコンはJSで設定 -->
             </button>
         </header>
 
         <main class="flex-grow flex items-center justify-center p-4">
             <div class="w-full max-w-2xl mx-auto">
-                
+
                 <!-- フォーム -->
                 <div class="w-full mx-auto">
-                    <div id="booking-form-container" class="p-6 sm:p-10 rounded-xl shadow-xl" style="background-color: var(--color-surface); border: 1px solid var(--color-border);">
-                        
+                    <div id="booking-form-container" class="p-6 sm:p-10 rounded-xl shadow-xl"
+                        style="background-color: var(--color-surface); border: 1px solid var(--color-border);">
+
                         <div id="form-content">
                             <h2 class="font-serif text-3xl sm:text-4xl font-bold text-center mb-2">ご予約・お問い合わせ</h2>
                             <p class="text-center text-base text-gray-600 dark:text-gray-300 mb-10">お気軽にご連絡くださいませ。</p>
-                            
-                            <form id="booking-form" action="https://formspree.io/f/xpwryrgq" method="POST" novalidate class="space-y-8">
-                                
+
+                            <form id="booking-form" action="https://formspree.io/f/xpwryrgq" method="POST" novalidate
+                                class="space-y-8">
+
                                 <!-- ご用件 -->
                                 <div>
                                     <label class="form-label">ご用件 <span class="text-red-500 text-sm">*</span></label>
                                     <div class="space-y-4">
                                         <div class="custom-radio">
                                             <input type="radio" id="type_booking" name="ご用件" value="予約" checked>
-                                            <label for="type_booking"><span class="icon"></span><span class="text-base">ご予約</span></label>
+                                            <label for="type_booking"><span class="icon"></span><span
+                                                    class="text-base">ご予約</span></label>
                                         </div>
                                         <div class="custom-radio">
                                             <input type="radio" id="type_inquiry" name="ご用件" value="お問い合わせ">
-                                            <label for="type_inquiry"><span class="icon"></span><span class="text-base">お問い合わせ</span></label>
+                                            <label for="type_inquiry"><span class="icon"></span><span
+                                                    class="text-base">お問い合わせ</span></label>
                                         </div>
                                     </div>
                                 </div>
-                                
+
+
+
                                 <!-- 希望メニュー -->
                                 <div id="menu-selection-wrapper">
                                     <label class="form-label">ご希望のメニュー</label>
                                     <div class="space-y-4">
                                         <div class="custom-checkbox">
-                                            <input type="checkbox" id="menu1" name="希望メニュー" value="頭筋ほぐしで小顔革命！ドライヘッドケア/45分">
+                                            <input type="checkbox" id="menu1" name="希望メニュー"
+                                                value="①頭筋ほぐしで小顔革命！ドライヘッドケア/45分 (初回2時間)">
                                             <label for="menu1">
                                                 <span class="icon"></span>
                                                 <div>
-                                                    <p class="font-medium text-lg">頭筋ほぐしで小顔革命！</p>
-                                                    <p class="text-base text-gray-600 dark:text-gray-400 mt-1">ドライヘッドケア/45分</p>
+                                                    <p class="font-medium text-lg">①頭筋ほぐしで小顔革命！</p>
+                                                    <p class="text-base text-gray-600 dark:text-gray-400 mt-1">
+                                                        ドライヘッドケア/45分 (初回2時間)</p>
                                                 </div>
                                             </label>
                                         </div>
                                         <div class="custom-checkbox">
-                                            <input type="checkbox" id="menu2" name="希望メニュー" value="「エレガンス小顔」フェイスライン整えエステ/ドライヘッドケア45分+フェイシャルエステ45分">
+                                            <input type="checkbox" id="menu2" name="希望メニュー" value="②小顔×ラクさ同時に叶える！
+ヘッド＆お悩みケア ボディ1面 90分(初回2時間半) [1]足のむくみバイバイ！巡り復活スリム脚ケア 90分ヘッドケア45分+足裏面45分">
                                             <label for="menu2">
                                                 <span class="icon"></span>
                                                 <div>
-                                                    <p class="font-medium text-lg">「エレガンス小顔」フェイスライン整えエステ</p>
-                                                    <p class="text-base text-gray-600 dark:text-gray-400 mt-1">ドライヘッドケア45分 + フェイシャルエステ45分</p>
+                                                    <p class="font-medium text-lg">②小顔×ラクさ 同時に叶える！ ヘッド＆お悩みケア ボディ1面
+                                                        90分(初回2時間半) </p>
+                                                    <p class="text-base text-gray-600 dark:text-gray-400 mt-1">
+                                                        [1] 足のむくみバイバイ！<br>巡り復活スリム脚ケア 90分ヘッドケア45分+足裏面45分</p>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="custom-checkbox">
+                                            <input type="checkbox" id="menu3" name="希望メニュー" value="②小顔×ラクさ 同時に叶える！
+ヘッド＆お悩みケア ボディ1面 90分(初回2時間半) [2]背中一面軽くなる！ つらさ手放す背中リリース 90分 ヘッドケア45分+背中 45分">
+                                            <label for="menu3">
+                                                <span class="icon"></span>
+                                                <div>
+                                                    <p class="font-medium text-lg">②小顔×ラクさ 同時に叶える！ ヘッド＆お悩みケア ボディ1面
+                                                        90分(初回2時間半) </p>
+                                                    <p class="text-base text-gray-600 dark:text-gray-400 mt-1">
+                                                        [2] 背中一面軽くなる！<br>つらさ手放す背中リリース 90分 ヘッドケア45分+背中 45分</p>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="custom-checkbox">
+                                            <input type="checkbox" id="menu4" name="希望メニュー" value="②小顔×ラクさ 同時に叶える！
+ヘッド＆お悩みケア ボディ1面 90分(初回2時間半) [3]まっすぐ足づくりフロントケア！ 膝ラク・脚ライン整うケア 90分 ヘッドケア45分+足前面 45分">
+                                            <label for="menu4">
+                                                <span class="icon"></span>
+                                                <div>
+                                                    <p class="font-medium text-lg">②小顔×ラクさ 同時に叶える！ ヘッド＆お悩みケア ボディ1面
+                                                        90分(初回2時間半) </p>
+                                                    <p class="text-base text-gray-600 dark:text-gray-400 mt-1">
+                                                        [3]まっすぐ足づくりフロントケア！<br>膝ラク・脚ライン整うケア 90分 ヘッドケア45分+足前面 45分</p>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="custom-checkbox">
+                                            <input type="checkbox" id="menu5" name="希望メニュー" value="②小顔×ラクさ 同時に叶える！
+ヘッド＆お悩みケア ボディ1面 90分(初回2時間半) [4]ひらく肩ラインメイク！ 姿勢が変わる巻き肩ケア 90分 ヘッドケア 45分+ハンド 45分">
+                                            <label for="menu5">
+                                                <span class="icon"></span>
+                                                <div>
+                                                    <p class="font-medium text-lg">②小顔×ラクさ 同時に叶える！ ヘッド＆お悩みケア ボディ1面
+                                                        90分(初回2時間半) </p>
+                                                    <p class="text-base text-gray-600 dark:text-gray-400 mt-1">
+                                                        [4]ひらく肩ラインメイク！<br>姿勢が変わる巻き肩ケア 90分 ヘッドケア 45分+ハンド 45分</p>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="custom-checkbox">
+                                            <input type="checkbox" id="menu6" name="希望メニュー"
+                                                value="③足先〜食いしばりの顎まで整えるラク軽ボディ！ 全身ケア2時間半コース(初回3時間)">
+                                            <label for="menu6">
+                                                <span class="icon"></span>
+                                                <div>
+                                                    <p class="font-medium text-lg">③足先〜食いしばりの顎まで整えるラク軽ボディ！</p>
+                                                    <p class="text-base text-gray-600 dark:text-gray-400 mt-1">
+                                                        全身ケア2時間半コース(初回3時間)</p>
                                                 </div>
                                             </label>
                                         </div>
                                     </div>
                                 </div>
-                                
+
                                 <!-- 希望日時 -->
                                 <div id="datetime-selection-wrapper" class="space-y-6">
                                     <!-- 送信用の隠しフィールド -->
@@ -260,72 +376,92 @@
                                     <input type="hidden" id="datetime_2" name="第二希望日時">
 
                                     <div>
-                                        <label class="form-label">第一希望日時 <span class="text-red-500 text-sm">*</span></label>
+                                        <label class="form-label">第一希望日時 <span
+                                                class="text-red-500 text-sm">*</span></label>
                                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                                            <div class="form-select-wrapper"><select data-choice="1" data-type="month" class="form-select date-month"></select></div>
-                                            <div class="form-select-wrapper"><select data-choice="1" data-type="day" class="form-select date-day"></select></div>
-                                            <div class="form-select-wrapper"><select data-choice="1" data-type="hour" class="form-select time-hour"></select></div>
-                                            <div class="form-select-wrapper"><select data-choice="1" data-type="minute" class="form-select time-minute"></select></div>
+                                            <div class="form-select-wrapper"><select data-choice="1" data-type="month"
+                                                    class="form-select date-month"></select></div>
+                                            <div class="form-select-wrapper"><select data-choice="1" data-type="day"
+                                                    class="form-select date-day"></select></div>
+                                            <div class="form-select-wrapper"><select data-choice="1" data-type="hour"
+                                                    class="form-select time-hour"></select></div>
+                                            <div class="form-select-wrapper"><select data-choice="1" data-type="minute"
+                                                    class="form-select time-minute"></select></div>
                                         </div>
                                     </div>
                                     <div>
                                         <label class="form-label">第二希望日時</label>
                                         <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                                            <div class="form-select-wrapper"><select data-choice="2" data-type="month" class="form-select date-month"></select></div>
-                                            <div class="form-select-wrapper"><select data-choice="2" data-type="day" class="form-select date-day"></select></div>
-                                            <div class="form-select-wrapper"><select data-choice="2" data-type="hour" class="form-select time-hour"></select></div>
-                                            <div class="form-select-wrapper"><select data-choice="2" data-type="minute" class="form-select time-minute"></select></div>
+                                            <div class="form-select-wrapper"><select data-choice="2" data-type="month"
+                                                    class="form-select date-month"></select></div>
+                                            <div class="form-select-wrapper"><select data-choice="2" data-type="day"
+                                                    class="form-select date-day"></select></div>
+                                            <div class="form-select-wrapper"><select data-choice="2" data-type="hour"
+                                                    class="form-select time-hour"></select></div>
+                                            <div class="form-select-wrapper"><select data-choice="2" data-type="minute"
+                                                    class="form-select time-minute"></select></div>
                                         </div>
                                     </div>
                                 </div>
 
                                 <!-- お客様情報 -->
                                 <div class="space-y-6 pt-6 border-t" style="border-color: var(--color-border);">
-                                     <div>
-                                        <label for="name" class="form-label">お名前 <span class="text-red-500 text-sm">*</span></label>
+                                    <div>
+                                        <label for="name" class="form-label">お名前 <span
+                                                class="text-red-500 text-sm">*</span></label>
                                         <input type="text" id="name" name="お名前" class="form-input" required>
                                     </div>
-                                     <div>
-                                        <label for="tel" class="form-label">電話番号 <span class="text-red-500 text-sm">*</span></label>
-                                        <input type="tel" id="tel" name="電話番号" class="form-input" required placeholder="例：09012345678">
+                                    <div>
+                                        <label for="tel" class="form-label">電話番号 <span
+                                                class="text-red-500 text-sm">*</span></label>
+                                        <input type="tel" id="tel" name="電話番号" class="form-input" required
+                                            placeholder="例：09012345678">
                                     </div>
-                                     <div>
-                                        <label for="email" class="form-label">メールアドレス <span class="text-red-500 text-sm">*</span></label>
+                                    <div>
+                                        <label for="email" class="form-label">メールアドレス <span
+                                                class="text-red-500 text-sm">*</span></label>
                                         <input type="email" id="email" name="メールアドレス" class="form-input" required>
                                     </div>
                                     <div>
                                         <label for="inquiry" class="form-label">その他、お問い合わせ内容</label>
-                                        <textarea id="inquiry" name="お問い合わせ内容" rows="5" class="form-textarea"></textarea>
+                                        <textarea id="inquiry" name="お問い合わせ内容" rows="5"
+                                            class="form-textarea"></textarea>
                                     </div>
                                 </div>
-                                
+
                                 <!-- 注意書き -->
                                 <div class="pt-4">
                                     <!-- カラーリングを修正して視認性を向上 -->
-                                    <p class="text-sm text-stone-700 dark:text-gray-300 bg-amber-50 dark:bg-gray-800 p-4 rounded-lg leading-relaxed">
+                                    <p
+                                        class="text-sm text-stone-700 dark:text-gray-300 bg-amber-50 dark:bg-gray-800 p-4 rounded-lg leading-relaxed">
                                         お問い合わせ・ご予約、誠にありがとうございます。<br>
                                         当サロンより折り返しご連絡いたしますので、今しばらくお待ちくださいませ。<br><br>
                                         <strong class="font-medium">※ご予約の場合、現段階ではまだ確定ではございません。</strong><br>
                                         当サロンからの連絡をもちまして、予約確定とさせていただきます。
                                     </p>
                                 </div>
-                                
+
                                 <!-- 送信ボタン -->
                                 <div class="pt-6">
                                     <button type="submit" id="submit-btn" class="btn btn-primary">この内容で送信する</button>
                                 </div>
                             </form>
                         </div>
-                        
+
                         <!-- 送信完了メッセージ -->
                         <div id="success-message" class="hidden text-center py-10 fade-in">
-                            <svg class="w-20 h-20 mx-auto mb-5" style="color: var(--color-primary);" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <svg class="w-20 h-20 mx-auto mb-5" style="color: var(--color-primary);" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
                             <h3 class="font-serif text-3xl font-bold mb-4">お問い合わせ・ご予約<br>誠にありがとうございます</h3>
                             <p class="text-base text-gray-600 dark:text-gray-300 leading-relaxed">
                                 当サロンより折り返しご連絡いたしますので、<br>今しばらくお待ちくださいませ。
                             </p>
-                             <!-- カラーリングを修正して視認性を向上 -->
-                             <p class="text-base text-stone-700 dark:text-gray-300 mt-8 bg-amber-50 dark:bg-gray-800 p-4 rounded-lg inline-block leading-relaxed">
+                            <!-- カラーリングを修正して視認性を向上 -->
+                            <p
+                                class="text-base text-stone-700 dark:text-gray-300 mt-8 bg-amber-50 dark:bg-gray-800 p-4 rounded-lg inline-block leading-relaxed">
                                 ※ご予約の場合、現段階ではまだ確定ではございません。<br>当サロンからの連絡をもちまして、予約確定とさせていただきます。
                             </p>
                         </div>
@@ -333,7 +469,7 @@
                 </div>
             </div>
         </main>
-        
+
         <footer class="text-center py-8 px-4 text-sm text-gray-500 dark:text-gray-400">
             <p><a href="#" class="hover:underline">プライバシーポリシー</a></p>
             <p class="mt-2">&copy; 2025 Rita Sallier. All Rights Reserved.</p>
@@ -342,184 +478,185 @@
 
 
     <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const form = document.getElementById('booking-form');
-        const formContent = document.getElementById('form-content');
-        const successMessage = document.getElementById('success-message');
-        const submitBtn = document.getElementById('submit-btn');
-        
-        const typeRadios = document.querySelectorAll('input[name="ご用件"]');
-        const menuSelectionWrapper = document.getElementById('menu-selection-wrapper');
-        const datetimeSelectionWrapper = document.getElementById('datetime-selection-wrapper');
-        
-        function populateDateTime() {
-            const monthSelects = document.querySelectorAll('.date-month');
-            const daySelects = document.querySelectorAll('.date-day');
-            const hourSelects = document.querySelectorAll('.time-hour');
-            const minuteSelects = document.querySelectorAll('.time-minute');
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.getElementById('booking-form');
+            const formContent = document.getElementById('form-content');
+            const successMessage = document.getElementById('success-message');
+            const submitBtn = document.getElementById('submit-btn');
 
-            monthSelects.forEach(select => {
-                select.innerHTML = '<option value="">月</option>';
-                for (let i = 1; i <= 12; i++) {
-                    select.add(new Option(`${i}月`, i));
-                }
-            });
+            const typeRadios = document.querySelectorAll('input[name="ご用件"]');
+            const menuSelectionWrapper = document.getElementById('menu-selection-wrapper');
+            const datetimeSelectionWrapper = document.getElementById('datetime-selection-wrapper');
 
-            daySelects.forEach(select => {
-                select.innerHTML = '<option value="">日</option>';
-                for (let i = 1; i <= 31; i++) {
-                    select.add(new Option(`${i}日`, i));
-                }
-            });
+            function populateDateTime() {
+                const monthSelects = document.querySelectorAll('.date-month');
+                const daySelects = document.querySelectorAll('.date-day');
+                const hourSelects = document.querySelectorAll('.time-hour');
+                const minuteSelects = document.querySelectorAll('.time-minute');
 
-            hourSelects.forEach(select => {
-                select.innerHTML = '<option value="">--時</option>';
-                for (let i = 10; i <= 20; i++) {
-                    select.add(new Option(`${i}時`, i));
-                }
-            });
-
-            minuteSelects.forEach(select => {
-                select.innerHTML = '<option value="">--分</option>';
-                for (let i = 0; i < 60; i += 15) {
-                    const value = i.toString().padStart(2, '0');
-                    select.add(new Option(`${value}分`, value));
-                }
-            });
-        }
-        populateDateTime();
-
-        function updateHiddenDateTime(choiceNumber) {
-            const selects = document.querySelectorAll(`select[data-choice="${choiceNumber}"]`);
-            const values = { month: '', day: '', hour: '', minute: '' };
-            selects.forEach(s => {
-                values[s.dataset.type] = s.value;
-            });
-            
-            const hiddenInput = document.getElementById(`datetime_${choiceNumber}`);
-            if (values.month && values.day && values.hour && values.minute) {
-                hiddenInput.value = `${values.month}月${values.day}日${values.hour}時${values.minute}分`;
-            } else {
-                hiddenInput.value = '';
-            }
-        }
-
-        document.querySelectorAll('#datetime-selection-wrapper select').forEach(select => {
-            select.addEventListener('change', (e) => {
-                updateHiddenDateTime(e.target.dataset.choice);
-            });
-        });
-
-        function validateForm() {
-            let isValid = true;
-            form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
-
-            const requiredFields = form.querySelectorAll('[required]');
-            
-            requiredFields.forEach(field => {
-                if (field.offsetParent === null) return; // Skip hidden fields
-
-                if (!field.value.trim()) {
-                    isValid = false;
-                    field.classList.add('is-invalid');
-                } else if (field.type === 'email' && !/^\S+@\S+\.\S+$/.test(field.value)) {
-                    isValid = false;
-                    field.classList.add('is-invalid');
-                }
-            });
-
-            const isBooking = document.querySelector('input[name="ご用件"]:checked').value === '予約';
-            if (isBooking) {
-                const firstChoiceSelects = document.querySelectorAll('select[data-choice="1"]');
-                let allSelected = true;
-                firstChoiceSelects.forEach(select => {
-                    if (!select.value) {
-                        allSelected = false;
+                monthSelects.forEach(select => {
+                    select.innerHTML = '<option value="">月</option>';
+                    for (let i = 1; i <= 12; i++) {
+                        select.add(new Option(`${i}月`, i));
                     }
                 });
-                if (!allSelected) {
-                    isValid = false;
-                    firstChoiceSelects.forEach(select => {
-                         if (!select.value) select.classList.add('is-invalid');
-                    });
+
+                daySelects.forEach(select => {
+                    select.innerHTML = '<option value="">日</option>';
+                    for (let i = 1; i <= 31; i++) {
+                        select.add(new Option(`${i}日`, i));
+                    }
+                });
+
+                hourSelects.forEach(select => {
+                    select.innerHTML = '<option value="">--時</option>';
+                    for (let i = 10; i <= 20; i++) {
+                        select.add(new Option(`${i}時`, i));
+                    }
+                });
+
+                minuteSelects.forEach(select => {
+                    select.innerHTML = '<option value="">--分</option>';
+                    for (let i = 0; i < 60; i += 15) {
+                        const value = i.toString().padStart(2, '0');
+                        select.add(new Option(`${value}分`, value));
+                    }
+                });
+            }
+            populateDateTime();
+
+            function updateHiddenDateTime(choiceNumber) {
+                const selects = document.querySelectorAll(`select[data-choice="${choiceNumber}"]`);
+                const values = { month: '', day: '', hour: '', minute: '' };
+                selects.forEach(s => {
+                    values[s.dataset.type] = s.value;
+                });
+
+                const hiddenInput = document.getElementById(`datetime_${choiceNumber}`);
+                if (values.month && values.day && values.hour && values.minute) {
+                    hiddenInput.value = `${values.month}月${values.day}日${values.hour}時${values.minute}分`;
+                } else {
+                    hiddenInput.value = '';
                 }
             }
 
-            return isValid;
-        }
+            document.querySelectorAll('#datetime-selection-wrapper select').forEach(select => {
+                select.addEventListener('change', (e) => {
+                    updateHiddenDateTime(e.target.dataset.choice);
+                });
+            });
 
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            if (validateForm()) {
-                const submitButtonText = submitBtn.innerHTML;
-                submitBtn.disabled = true;
-                submitBtn.innerHTML = '送信中...';
+            function validateForm() {
+                let isValid = true;
+                form.querySelectorAll('.is-invalid').forEach(el => el.classList.remove('is-invalid'));
 
-                const formData = new FormData(form);
-                fetch(form.action, {
-                    method: 'POST',
-                    body: formData,
-                    headers: { 'Accept': 'application/json' }
-                }).then(response => {
-                    if (response.ok) {
-                        formContent.style.display = 'none';
-                        successMessage.style.display = 'block';
-                    } else {
-                        response.json().then(data => {
-                            if (Object.hasOwn(data, 'errors')) {
-                                alert(data["errors"].map(error => error["message"]).join(", "));
-                            } else {
-                                throw new Error('Submission error');
-                            }
+                const requiredFields = form.querySelectorAll('[required]');
+
+                requiredFields.forEach(field => {
+                    if (field.offsetParent === null) return; // Skip hidden fields
+
+                    if (!field.value.trim()) {
+                        isValid = false;
+                        field.classList.add('is-invalid');
+                    } else if (field.type === 'email' && !/^\S+@\S+\.\S+$/.test(field.value)) {
+                        isValid = false;
+                        field.classList.add('is-invalid');
+                    }
+                });
+
+                const isBooking = document.querySelector('input[name="ご用件"]:checked').value === '予約';
+                if (isBooking) {
+                    const firstChoiceSelects = document.querySelectorAll('select[data-choice="1"]');
+                    let allSelected = true;
+                    firstChoiceSelects.forEach(select => {
+                        if (!select.value) {
+                            allSelected = false;
+                        }
+                    });
+                    if (!allSelected) {
+                        isValid = false;
+                        firstChoiceSelects.forEach(select => {
+                            if (!select.value) select.classList.add('is-invalid');
                         });
                     }
-                }).catch(error => {
-                    alert('フォームの送信に失敗しました。時間をおいて再度お試しください。');
-                }).finally(() => {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = submitButtonText;
-                });
-            } else {
-                alert('必須項目に誤りがあります。赤枠の項目をご確認ください。');
+                }
+
+                return isValid;
             }
-        });
 
-        function toggleFormSections() {
-            const isBooking = document.querySelector('input[name="ご用件"]:checked').value === '予約';
-            
-            menuSelectionWrapper.style.display = isBooking ? 'block' : 'none';
-            datetimeSelectionWrapper.style.display = isBooking ? 'block' : 'none';
-        }
-        typeRadios.forEach(radio => {
-            radio.addEventListener('change', toggleFormSections);
-        });
-        
-        const themeToggle = document.getElementById('theme-toggle');
-        const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`;
-        const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`;
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
 
-        const applyTheme = (theme) => {
-            if (theme === 'dark') {
-                document.documentElement.classList.add('dark');
-                themeToggle.innerHTML = sunIcon;
-            } else {
-                document.documentElement.classList.remove('dark');
-                themeToggle.innerHTML = moonIcon;
+                if (validateForm()) {
+                    const submitButtonText = submitBtn.innerHTML;
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '送信中...';
+
+                    const formData = new FormData(form);
+                    fetch(form.action, {
+                        method: 'POST',
+                        body: formData,
+                        headers: { 'Accept': 'application/json' }
+                    }).then(response => {
+                        if (response.ok) {
+                            formContent.style.display = 'none';
+                            successMessage.style.display = 'block';
+                        } else {
+                            response.json().then(data => {
+                                if (Object.hasOwn(data, 'errors')) {
+                                    alert(data["errors"].map(error => error["message"]).join(", "));
+                                } else {
+                                    throw new Error('Submission error');
+                                }
+                            });
+                        }
+                    }).catch(error => {
+                        alert('フォームの送信に失敗しました。時間をおいて再度お試しください。');
+                    }).finally(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = submitButtonText;
+                    });
+                } else {
+                    alert('必須項目に誤りがあります。赤枠の項目をご確認ください。');
+                }
+            });
+
+            function toggleFormSections() {
+                const isBooking = document.querySelector('input[name="ご用件"]:checked').value === '予約';
+
+                menuSelectionWrapper.style.display = isBooking ? 'block' : 'none';
+                datetimeSelectionWrapper.style.display = isBooking ? 'block' : 'none';
             }
-            localStorage.setItem('theme', theme);
-        };
+            typeRadios.forEach(radio => {
+                radio.addEventListener('change', toggleFormSections);
+            });
 
-        const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
-        applyTheme(savedTheme);
+            const themeToggle = document.getElementById('theme-toggle');
+            const sunIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>`;
+            const moonIcon = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`;
 
-        themeToggle.addEventListener('click', () => {
-            const newTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
-            applyTheme(newTheme);
+            const applyTheme = (theme) => {
+                if (theme === 'dark') {
+                    document.documentElement.classList.add('dark');
+                    themeToggle.innerHTML = sunIcon;
+                } else {
+                    document.documentElement.classList.remove('dark');
+                    themeToggle.innerHTML = moonIcon;
+                }
+                localStorage.setItem('theme', theme);
+            };
+
+            const savedTheme = localStorage.getItem('theme') || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+            applyTheme(savedTheme);
+
+            themeToggle.addEventListener('click', () => {
+                const newTheme = document.documentElement.classList.contains('dark') ? 'light' : 'dark';
+                applyTheme(newTheme);
+            });
+
+            toggleFormSections();
         });
-
-        toggleFormSections();
-    });
     </script>
 </body>
+
 </html>
